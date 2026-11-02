@@ -17,15 +17,21 @@
 #include <iostream>
 #include <limits>
 
+#define NUMBERS "-0123456789.f"
+
 class ScalarConverter
 {
 	private:
+		static bool	isEspecialCase(const std::string &input);
+		static bool isNumber(const std::string &input);
 		static bool isChar(const std::string &input);
+		static void	convertFromEspecialCase(const std::string &input);
+		static void	convertFromNumber(const std::string input);
 		static void	convertFromChar(const std::string &input);
-		static void convertChar(const char &input);
-		static void convertInt(const std::string &input);
-		static void convertFloat(const std::string &input);
-		static void convertDouble(const std::string &input);
+		static void convertChar(const char &c);
+		static void convertInt(const long double &number, const std::string &input);
+		static void convertFloat(const long double &number, const std::string &input);
+		static void convertDouble(const long double &number, const std::string &input);
 	public:
 		ScalarConverter(void);
 		ScalarConverter(const ScalarConverter &other);
