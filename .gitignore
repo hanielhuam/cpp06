@@ -2,3 +2,4 @@
 *.o
 ex00/Converter
 ex01/Serializer
+ex02/Identifier
