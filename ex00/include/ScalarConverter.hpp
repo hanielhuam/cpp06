@@ -29,9 +29,9 @@ class ScalarConverter
 		static void	convertFromNumber(const std::string input);
 		static void	convertFromChar(const std::string &input);
 		static void convertChar(const char &c);
-		static void convertInt(const long double &number, const std::string &input);
-		static void convertFloat(const long double &number, const std::string &input);
-		static void convertDouble(const long double &number, const std::string &input);
+		static void convertInt(const long double &number);
+		static void convertFloat(const long double &number);
+		static void convertDouble(const long double &number);
 	public:
 		ScalarConverter(void);
 		ScalarConverter(const ScalarConverter &other);

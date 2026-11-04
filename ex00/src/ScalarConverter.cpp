@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <iomanip>
 
 ScalarConverter::ScalarConverter(void) {}
 
@@ -72,9 +73,9 @@ void	ScalarConverter::convertFromNumber(const std::string input)
 		std::cout << "char: overflow" << std::endl;
 	else
 		convertChar(static_cast<char>(number));
-	convertInt(number, input);
-	convertFloat(number, input);
-	convertDouble(number, input);
+	convertInt(number);
+	convertFloat(number);
+	convertDouble(number);
 }
 
 bool	ScalarConverter::isEspecialCase(const std::string &input)
@@ -107,7 +108,7 @@ void	ScalarConverter::convert (const std::string &input)
 		convertFromChar(input);
 	else if (isNumber(input))
 		convertFromNumber(input);
-	if (isEspecialCase(input))
+	else if (isEspecialCase(input))
 		convertFromEspecialCase(input);
 	else
 		std::cout << "unknow type" << std::endl;
@@ -116,34 +117,36 @@ void	ScalarConverter::convert (const std::string &input)
 void	ScalarConverter::convertChar(const char &c)
 {
 	if (!std::isprint(c))
-		std::cout << "char: Not printble" << std::endl;
+		std::cout << "char: Not printable" << std::endl;
 	else
-		std::cout << "char: " << c << std::endl;
+		std::cout << "char: '" << c << "'" << std::endl;
 }
 
-void	ScalarConverter::convertInt(const long double &number, const std::string &input)
+void	ScalarConverter::convertInt(const long double &number)
 {
 	if (number < -std::numeric_limits<int>::max() ||
 	number > std::numeric_limits<int>::max())
 		std::cout << "int: overflow" << std::endl;
 	else
-		std::cout << "int: " << std::atoi(input.c_str()) << std::endl;
+		std::cout << "int: " <<	static_cast<int>(number) << std::endl;
 }
 
-void	ScalarConverter::convertFloat(const long double &number, const std::string &input)
+void	ScalarConverter::convertFloat(const long double &number)
 {
 	if (number < -std::numeric_limits<float>::max() ||
 	number > std::numeric_limits<float>::max())
 		std::cout << "float: overflow" << std::endl;
 	else
-		std::cout << "float: " << std::strtof(input.c_str(), NULL) << "f" << std::endl;
+		std::cout << "float: " << std::fixed << std::setprecision(1) <<
+			static_cast<float>(number) << "f" << std::endl;
 }
 
-void	ScalarConverter::convertDouble(const long double &number, const std::string &input)
+void	ScalarConverter::convertDouble(const long double &number)
 {
 	if (number < -std::numeric_limits<double>::max() ||
 	number > std::numeric_limits<double>::max())
 		std::cout << "double: overflow" << std::endl;
 	else
-		std::cout << "double: " << std::strtod(input.c_str(), NULL) << std::endl;
+		std::cout << "double: " << std::fixed << std::setprecision(1) <<
+		static_cast<double>(number) << std::endl;
 }
